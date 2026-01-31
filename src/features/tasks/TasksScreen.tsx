@@ -19,22 +19,28 @@ export default function Home() {
     }, [apiData, dispatch])
 
     return (
-        <div className="p-8 space-y-8"
+        <div className="p-8 h-screen flex flex-col"
         >
-            <div className="flex justify-between items-center">
-                <h1 className="text-4xl font-extrabold"
+            <div className="flex justify-between items-center mb-8 flex-shrink-0">
+                <h1 className="text-4xl font-extrabold text-purple-400"
                 >
                     Tasks and To-Do Lists
                 </h1>
                 <AddTaskModal />
             </div>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="flex-1 overflow-hidden flex flex-col min-h-0">
                 {isLoading ? (
-                    <Spinner />
+                    <div className="flex items-center justify-center h-full">
+                        <Spinner />
+                    </div>
                 ) : error ? (
-                    <div>Error loading tasks</div>
+                    <div className="flex items-center justify-center h-full">
+                        <div>Error loading tasks</div>
+                    </div>
                 ) : (
-                    <TasksTable data={tasks} />
+                    <div className="flex-1 overflow-y-auto">
+                        <TasksTable data={tasks} />
+                    </div>
                 )}
             </div>
         </div>

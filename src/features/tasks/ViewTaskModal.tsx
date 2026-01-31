@@ -113,6 +113,7 @@ export const ViewTaskModal = ({ taskId, open, onOpenChange }: ViewTaskModalProps
                     </div>
                     <div className="flex justify-end pt-4">
                         <Button
+                            variant="primary"
                             onClick={() => onOpenChange(false)}
                         >
                             Close

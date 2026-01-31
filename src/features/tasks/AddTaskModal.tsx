@@ -52,7 +52,7 @@ export const AddTaskModal = () => {
             description="Add a new task" 
             open={isOpen}
             onOpenChange={handleOpenChange}
-            trigger={<Button className="cursor-pointer">
+            trigger={<Button variant="primary" className="cursor-pointer">
                 <PlusIcon className="w-4 h-4" />
                 Add Task
             </Button>}
@@ -84,7 +84,7 @@ export const AddTaskModal = () => {
                         </span>
                     )}
                 </div>
-                <Button type="submit" disabled={isSubmitting}>
+                <Button variant="primary" type="submit" disabled={isSubmitting}>
                     {isSubmitting ? "Adding..." : "Add Task"}
                 </Button>
             </form>

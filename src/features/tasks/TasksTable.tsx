@@ -41,7 +41,7 @@ export const TasksTable = ({
     return (
         <>
             <Table<TTaskSchema>
-                className="border-1 border-gray-300 rounded-2xl"
+                className="border-1 border-gray-300 rounded-lg"
                 header={["", "ID", "Title", "Description", "Status"]}
                 data={data}
                 renderRow={(task) => (
