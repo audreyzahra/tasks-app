@@ -2,6 +2,8 @@
 
 A modern task management application built with Next.js, featuring task CRUD operations, status management, comments, and real-time data synchronization with localStorage.
 
+🌐 **Live Demo**: [https://tasks-app-audrey.vercel.app/](https://tasks-app-audrey.vercel.app/)
+
 ## 🚀 Tech Stack
 
 - **Framework**: Next.js 16.1.6 (App Router)
@@ -14,6 +16,7 @@ A modern task management application built with Next.js, featuring task CRUD ope
 - **UI Components**: Radix UI (Dialog, Dropdown Menu)
 - **Icons**: Lucide React
 - **HTTP Client**: Axios 1.13.4
+- **Testing**: Jest 30.2.0 with React Testing Library
 - **Package Manager**: pnpm
 
 ## 📋 Prerequisites
@@ -93,6 +96,175 @@ pnpm start
 pnpm lint
 ```
 
+### Testing
+
+This project uses **Jest** for unit testing with React Testing Library for component testing.
+
+#### Running Tests
+
+```bash
+# Run all tests
+pnpm test
+
+# Run tests in watch mode (auto-rerun on file changes)
+pnpm test:watch
+
+# Generate coverage report
+pnpm test:coverage
+```
+
+#### Test Structure
+
+Tests are organized in `__tests__` folders alongside the code they test:
+
+```
+src/
+├── helper/
+│   ├── __tests__/
+│   │   └── helper.test.ts          # Helper functions tests
+│   └── helper.ts
+├── lib/
+│   ├── __tests__/
+│   │   └── utils.test.ts           # Utility functions tests
+│   └── utils.ts
+├── schema/
+│   ├── __tests__/
+│   │   ├── tasks.model.test.ts     # Task schema validation tests
+│   │   └── tasks.form.test.ts      # Form validation tests
+│   ├── tasks.model.ts
+│   └── tasks.form.ts
+└── store/
+    └── slices/
+        ├── __tests__/
+        │   └── tasksSlice.test.ts  # Redux slice tests
+        └── tasksSlice.ts
+```
+
+#### Test Coverage
+
+The project includes unit tests for:
+
+- ✅ **Helper Functions**: Status color and label utilities
+- ✅ **Utility Functions**: Class name merging (cn function)
+- ✅ **Schema Validation**: Zod schema validation for tasks and forms
+- ✅ **Redux Slices**: State management actions and reducers
+
+#### Test Configuration
+
+- **Jest Config**: `jest.config.js` - Configured for Next.js with TypeScript support
+- **Test Setup**: `jest.setup.js` - Includes mocks for Next.js router, localStorage, and matchMedia
+- **Type Definitions**: `src/types/jest.d.ts` - Jest type definitions
+
+#### Writing Tests
+
+When writing new tests:
+
+1. Create a `__tests__` folder next to the file you're testing
+2. Name the test file as `[filename].test.ts` or `[filename].test.tsx`
+3. Use Jest and React Testing Library for component tests
+4. Follow the existing test patterns in the codebase
+
+Example test structure:
+
+```typescript
+import { functionToTest } from '../file'
+
+describe('FunctionName', () => {
+  it('should do something', () => {
+    const result = functionToTest()
+    expect(result).toBe(expectedValue)
+  })
+})
+```
+
+## 🚀 Deployment
+
+This project is deployed on **Vercel**, a platform optimized for Next.js applications.
+
+### Live Application
+
+🌐 **Production URL**: [https://tasks-app-audrey.vercel.app/](https://tasks-app-audrey.vercel.app/)
+
+The application is automatically deployed from the main branch and updates on every push.
+
+### Deployment Platform: Vercel
+
+**Vercel** provides:
+- ✅ Automatic deployments from Git
+- ✅ Preview deployments for pull requests
+- ✅ Edge Network for global performance
+- ✅ Zero-configuration for Next.js
+- ✅ Environment variable management
+- ✅ Analytics and monitoring
+
+### Deployment Configuration
+
+The project uses Vercel's default Next.js configuration:
+
+- **Build Command**: Automatically detected (`next build`)
+- **Output Directory**: `.next`
+- **Install Command**: `pnpm install`
+- **Framework Preset**: Next.js
+
+### Environment Variables
+
+Make sure to configure the following environment variables in Vercel:
+
+1. Go to your project settings in Vercel Dashboard
+2. Navigate to **Settings** → **Environment Variables**
+3. Add the following variable:
+
+   ```
+   NEXT_PUBLIC_API_URL=https://jsonplaceholder.typicode.com
+   ```
+
+### Deploying to Vercel
+
+#### Option 1: Deploy via Vercel Dashboard
+
+1. Push your code to GitHub/GitLab/Bitbucket
+2. Import your repository in [Vercel Dashboard](https://vercel.com/dashboard)
+3. Configure environment variables
+4. Click **Deploy**
+
+#### Option 2: Deploy via Vercel CLI
+
+```bash
+# Install Vercel CLI globally
+npm i -g vercel
+
+# Login to Vercel
+vercel login
+
+# Deploy to production
+vercel --prod
+```
+
+### Deployment Workflow
+
+1. **Push to Main Branch**: Automatically triggers a production deployment
+2. **Pull Requests**: Creates preview deployments for each PR
+3. **Build Process**: Runs `pnpm install` and `next build`
+4. **Deployment**: Deploys to Vercel's Edge Network
+
+### Custom Domain (Optional)
+
+To add a custom domain:
+
+1. Go to **Settings** → **Domains** in Vercel Dashboard
+2. Add your custom domain
+3. Follow DNS configuration instructions
+4. Vercel will automatically provision SSL certificates
+
+### Monitoring and Analytics
+
+Vercel provides built-in analytics:
+- **Web Analytics**: Track page views and performance
+- **Speed Insights**: Monitor Core Web Vitals
+- **Real User Monitoring**: Understand user experience
+
+Access analytics in the Vercel Dashboard under your project's **Analytics** tab.
+
 ## 📁 Project Structure
 
 ```
@@ -141,6 +313,8 @@ task-app/
 ├── next.config.ts             # Next.js configuration
 ├── tsconfig.json              # TypeScript configuration
 ├── tailwind.config.js         # Tailwind CSS configuration
+├── jest.config.js             # Jest configuration
+├── jest.setup.js              # Jest setup file
 └── package.json              # Project dependencies
 ```
 
@@ -247,8 +421,9 @@ The application uses JSONPlaceholder as the default API:
 
 1. Create a feature branch
 2. Make your changes
-3. Ensure all tests pass and linting is clean
-4. Submit a pull request
+3. Write or update tests for new functionality
+4. Ensure all tests pass (`pnpm test`) and linting is clean (`pnpm lint`)
+5. Submit a pull request
 
 ## 📄 License
 
